@@ -184,11 +184,191 @@ Bạn hoàn toàn có thể chạy song song Continue và Roo Code trên VS Code
 
 ---
 
-## 6. Hướng Dẫn Gỡ Cài Đặt (Uninstall)
+## 6. Sử Dụng Aider với Local Model (Ollama)
+
+[Aider](https://aider.chat/) là một AI pair programming tool chạy trực tiếp trong terminal, có khả năng làm việc trực tiếp với Git repository của bạn. Aider có thể chỉnh sửa code trong nhiều file cùng lúc, tự commit lên Git, và hỗ trợ nhiều ngôn ngữ lập trình.
+
+### Tại sao nên dùng Aider thay vì (hoặc kết hợp với) các công cụ khác?
+
+| Tính năng | Aider | Continue | Roo Code / Cline |
+| :--- | :--- | :--- | :--- |
+| **Giao diện** | Terminal (CLI) | VS Code Extension | VS Code Extension |
+| **Tự động Git commit** | ✅ Có sẵn | ❌ | ❌ |
+| **Chỉnh sửa đa file** | ✅ Có | ✅ Có | ✅ Có |
+| **Chạy lệnh terminal** | ❌ (do người dùng chạy) | ❌ | ✅ |
+| **Autocomplete khi gõ** | ❌ | ✅ | ❌ |
+| **Yêu cầu VS Code** | ❌ (chạy độc lập) | ✅ | ✅ |
+
+### 6.1. Cài đặt Aider
+
+Aider yêu cầu Python 3.8+. Trên Windows, bạn có thể cài đặt qua pip:
+
+```powershell
+# Cài đặt Aider qua pip
+pip install aider-chat
+```
+
+> **Lưu ý:** 
+> - Nếu bạn chưa có Python, hãy tải từ [python.org](https://www.python.org/downloads/) và **nhớ tick chọn "Add Python to PATH"** khi cài đặt.
+> - Khuyên dùng tạo virtual environment riêng cho Aider để tránh xung đột package:
+>   ```powershell
+>   python -m venv aider-env
+>   .\aider-env\Scripts\activate
+>   pip install aider-chat
+>   ```
+
+### 6.2. Cấu hình Aider để dùng Ollama
+
+Aider sử dụng biến môi trường hoặc file `.env` trong thư mục home để cấu hình. Có ba cách để kết nối Aider với Ollama:
+
+#### Cách 1: Dùng biến môi trường (Nhanh, dùng cho lần đầu)
+
+```powershell
+# Đặt model mặc định và API base của Ollama
+$env:AIDER_MODEL="ollama_chat/qwen2.5-coder:14b"
+$env:AIDER_OLLAMA_API_BASE="http://localhost:11434"
+
+# Chạy Aider với model Ollama
+aider
+```
+
+#### Cách 2: Tạo file `.env` (Lưu cấu hình vĩnh viễn)
+
+Tạo file `%USERPROFILE%\.aider.conf.yml` với nội dung:
+
+```yaml
+# ~\.aider.conf.yml
+model: ollama_chat/qwen2.5-coder:14b
+ollama-api-base: http://localhost:11434
+```
+
+Hoặc thêm vào file `%USERPROFILE%\.env`:
+```
+AIDER_MODEL=ollama_chat/qwen2.5-coder:14b
+AIDER_OLLAMA_API_BASE=http://localhost:11434
+```
+
+#### Cách 3: Dùng flag trực tiếp khi chạy
+
+```powershell
+aider --model ollama_chat/qwen2.5-coder:14b --ollama-api-base http://localhost:11434
+```
+
+### 6.3. Các model khuyên dùng cho Aider trên Windows
+
+Aider hoạt động tốt nhất với các model code-dedicated. Dưới đây là các khuyến nghị theo cấu hình phần cứng:
+
+| Cấu hình | Model | Chất lượng code | Tốc độ | VRAM tiêu thụ |
+| :--- | :--- | :--- | :--- | :--- |
+| **Phổ thông (6-8GB VRAM)** | `ollama_chat/qwen2.5-coder:7b` | ⭐⭐⭐ | 🚀🚀🚀🚀🚀 | ~4.7GB |
+| **Tầm trung (12GB VRAM)** | `ollama_chat/qwen2.5-coder:14b` | ⭐⭐⭐⭐ | 🚀🚀🚀🚀 | ~9GB |
+| **Tầm trung (12GB VRAM)** | `ollama_chat/deepseek-coder-v2:16b` | ⭐⭐⭐⭐⭐ | 🚀🚀🚀 | ~10GB |
+| **Cao cấp (16GB+ VRAM)** | `ollama_chat/qwen2.5-coder:32b` | ⭐⭐⭐⭐⭐ | 🚀🚀🚀 | ~20GB |
+
+> **Mẹo:** Nếu bạn muốn Aider tự động chọn model phù hợp dựa trên độ phức tạp của task, bạn có thể thiết lập nhiều model trong cùng một file cấu hình (tính năng có từ phiên bản mới).
+
+### 6.4. Cách sử dụng Aider cơ bản
+
+```powershell
+# 1. Mở PowerShell, di chuyển đến thư mục dự án (phải có Git init)
+cd C:\path\to\your\project
+git init  # Nếu chưa có Git repo
+aider
+
+# 2. Chat với Aider (gõ yêu cầu trực tiếp)
+# Ví dụ: "Add error handling to the fetchData function in api.js"
+
+# 3. Chuyển sang chế độ Architect (lên kế hoạch trước, code sau)
+# /architect
+# Trong chế độ này, Aider sẽ phân tích thiết kế trước, sau đó mới viết code.
+# Phù hợp cho các task phức tạp cần lên architecture trước.
+
+# 4. Chuyển sang chế độ Code (chế độ mặc định - tập trung viết code)
+# /code
+
+# 5. Thêm file vào phiên làm việc
+# /add src/main.py
+# /add src/utils/helpers.py
+
+# 6. Thêm nhiều file cùng lúc
+# /add src/*.py src/utils/*.py
+
+# 7. Thêm toàn bộ thư mục
+# /add src/
+
+# 8. Xoá file khỏi context
+# /drop src/old-file.py
+
+# 9. Xoá toàn bộ file khỏi context (xóa sạch)
+# /clear
+
+# 10. Xem danh sách các file đang được quản lý
+# /files
+
+# 11. Xem repo map (sơ đồ cấu trúc dự án)
+# /map
+
+# 12. Xoá lịch sử chat
+# /history
+
+# 13. Xoá hoàn toàn (clear + reset toàn bộ session)
+# /reset
+
+# 14. Diff các thay đổi trước khi commit
+# /diff
+
+# 15. Commit thay đổi
+# /commit
+
+# 16. Yêu cầu Aider giải thích code
+# /explain src/main.py
+
+# 17. Chạy Aider với chế độ tự động commit (không cần hỏi)
+aider --auto-commits
+
+# 18. Chạy Aider ở chế độ "tự động" (không cần phê duyệt từng thay đổi)
+aider --yes
+```
+
+### 6.5. Các flags hữu ích khác
+
+```powershell
+# Chỉ định kiến trúc model (quan trọng với Ollama)
+aider --model ollama_chat/qwen2.5-coder:14b --map-tokens 1024
+
+# Tăng số token cho context window (hữu ích với model 14B+)
+aider --max-chat-history-tokens 8192
+
+# Chỉ định thư mục làm việc
+aider --directory C:\path\to\project
+
+# Chạy ở chế độ quiet (ít log hơn)
+aider --no-pretty
+```
+
+### 6.6. Lưu ý khi dùng Aider với Local Model
+
+1. **Tốc độ inference:** Không nên dùng model nhỏ hơn 7B cho Aider vì chất lượng code sẽ không đủ tốt để chỉnh sửa đa file.
+2. **Git repository là bắt buộc:** Aider yêu cầu dự án phải được init Git để có thể theo dõi và hoàn tác thay đổi.
+3. **Context Window:** Model local thường có context window nhỏ hơn API đám mây (ví dụ 8K-32K tokens so với 128K+). Hãy giữ số lượng file trong phiên làm việc ở mức vừa phải (5-10 file).
+4. **Kiểm tra kết nối:** Nếu Aider không kết nối được với Ollama, hãy kiểm tra:
+   ```powershell
+   # Kiểm tra Ollama đang chạy
+   curl http://localhost:11434/api/tags
+   
+   # Kiểm tra model đã được tải
+   ollama list
+   ```
+
+> **Mẹo nâng cao:** Kết hợp Aider với Cline/Roo Code: dùng Aider cho các tác vụ yêu cầu Git commit tự động và chỉnh sửa code chính xác, dùng Roo Code khi cần agent tự động chạy terminal và cài đặt dependencies.
+
+---
+
+## 7. Hướng Dẫn Gỡ Cài Đặt (Uninstall)
 
 Khi bạn muốn giải phóng không gian bộ nhớ hoặc gỡ sạch hệ thống:
 
-### Bước 6.1: Xóa các Model AI để giải phóng bộ nhớ ổ cứng
+### Bước 7.1: Xóa các Model AI để giải phóng bộ nhớ ổ cứng
 Mở **PowerShell** và xóa các model:
 ```powershell
 ollama rm qwen2.5-coder:14b
@@ -198,7 +378,13 @@ ollama rm nomic-embed-text
 Hoặc bạn có thể xóa trực tiếp thư mục lưu trữ model mặc định của Ollama trên Windows tại:
 `C:\Users\<Tên_Tài_Khoản>\.ollama` (hoặc truy cập nhanh qua đường dẫn `%USERPROFILE%\.ollama` trong File Explorer).
 
-### Bước 6.2: Gỡ phần mềm Ollama
+### Bước 7.2: Gỡ phần mềm Ollama
 1. Chuột phải vào biểu tượng Ollama ở khay hệ thống và chọn **Quit**.
 2. Mở **Settings** -> **Apps** -> **Installed Apps** (hoặc Add/Remove Programs trên các bản Windows cũ).
 3. Tìm kiếm **Ollama** và chọn **Uninstall**.
+
+### Bước 7.3: Gỡ Aider (nếu đã cài)
+```powershell
+pip uninstall aider-chat
+```
+Nếu bạn đã tạo virtual environment riêng, chỉ cần xóa thư mục `aider-env` là xong.

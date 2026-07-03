@@ -174,7 +174,181 @@ Bạn hoàn toàn có thể chạy song song Continue và Roo Code trên VS Code
 - Bạn nhập yêu cầu công việc cụ thể vào ô chat của Roo Code (ví dụ: *"Viết bộ unit test cho file script.js này"* hoặc *"Tạo giao diện Landing Page có responsive"*).
 - Agent sẽ tự động lập kế hoạch, đề xuất sửa đổi mã nguồn hoặc tạo file mới. Bạn chỉ cần bấm duyệt (Approve) cho mỗi bước chỉnh sửa hoặc chạy thử lệnh terminal của AI.
 
-## 5. Hướng Dẫn Gỡ Cài Đặt (Uninstall)
+## 5. Sử Dụng Aider với Local Model (Ollama)
+
+[Aider](https://aider.chat/) là một AI pair programming tool chạy trực tiếp trong terminal, có khả năng làm việc trực tiếp với Git repository của bạn. Aider có thể chỉnh sửa code trong nhiều file cùng lúc, tự commit lên Git, và hỗ trợ nhiều ngôn ngữ lập trình.
+
+### Tại sao nên dùng Aider thay vì (hoặc kết hợp với) các công cụ khác?
+
+| Tính năng | Aider | Continue | Roo Code / Cline |
+| :--- | :--- | :--- | :--- |
+| **Giao diện** | Terminal (CLI) | VS Code Extension | VS Code Extension |
+| **Tự động Git commit** | ✅ Có sẵn | ❌ | ❌ |
+| **Chỉnh sửa đa file** | ✅ Có | ✅ Có | ✅ Có |
+| **Chạy lệnh terminal** | ❌ (do người dùng chạy) | ❌ | ✅ |
+| **Autocomplete khi gõ** | ❌ | ✅ | ❌ |
+| **Yêu cầu VS Code** | ❌ (chạy độc lập) | ✅ | ✅ |
+
+### 5.1. Cài đặt Aider
+
+Bạn có thể cài đặt Aider qua pip (Python) hoặc Homebrew:
+
+```bash
+# Cách 1: Cài đặt qua pip (khuyên dùng - luôn có phiên bản mới nhất)
+pip install aider-chat
+
+# Cách 2: Cài đặt qua Homebrew
+brew install aider
+```
+
+> **Lưu ý:** Aider yêu cầu Python 3.8+. Nếu dùng pip, hãy đảm bảo bạn đang dùng đúng Python environment (khuyên dùng virtual environment).
+
+### 5.2. Cấu hình Aider để dùng Ollama
+
+Aider sử dụng biến môi trường hoặc file `.env` trong thư mục home để cấu hình. Có hai cách để kết nối Aider với Ollama:
+
+#### Cách 1: Dùng biến môi trường (Nhanh, dùng cho lần đầu)
+
+```bash
+# Đặt model mặc định và API base của Ollama
+export AIDER_MODEL=ollama_chat/qwen2.5-coder:14b
+export AIDER_OLLAMA_API_BASE=http://localhost:11434
+
+# Chạy Aider với model Ollama
+aider
+```
+
+#### Cách 2: Tạo file `.env` (Lưu cấu hình vĩnh viễn)
+
+Tạo file `~/.aider.conf.yml` hoặc thêm vào `~/.env`:
+
+```yaml
+# ~/.aider.conf.yml
+model: ollama_chat/qwen2.5-coder:14b
+ollama-api-base: http://localhost:11434
+```
+
+Hoặc thêm vào file `.env` trong thư mục home:
+```bash
+# ~/.env
+AIDER_MODEL=ollama_chat/qwen2.5-coder:14b
+AIDER_OLLAMA_API_BASE=http://localhost:11434
+```
+
+#### Cách 3: Dùng flag trực tiếp khi chạy
+
+```bash
+aider --model ollama_chat/qwen2.5-coder:14b --ollama-api-base http://localhost:11434
+```
+
+### 5.3. Các model khuyên dùng cho Aider
+
+Aider hoạt động tốt nhất với các model code-dedicated. Dưới đây là các khuyến nghị cho Mac M4 24GB:
+
+| Model | Chất lượng code | Tốc độ | RAM tiêu thụ | Phù hợp cho |
+| :--- | :--- | :--- | :--- | :--- |
+| `ollama_chat/qwen2.5-coder:14b` | ⭐⭐⭐⭐ | 🚀🚀🚀🚀 | ~9-10GB | Dự án vừa và nhỏ, phản hồi nhanh |
+| `ollama_chat/deepseek-coder-v2:16b` | ⭐⭐⭐⭐⭐ | 🚀🚀🚀 | ~10GB | Dự án lớn, logic phức tạp |
+| `ollama_chat/qwen2.5-coder:7b` | ⭐⭐⭐ | 🚀🚀🚀🚀🚀 | ~4GB | Code đơn giản, muốn tốc độ tối đa |
+
+> **Mẹo:** Nếu bạn muốn Aider tự động chọn model phù hợp dựa trên độ phức tạp của task, bạn có thể thiết lập nhiều model trong cùng một file cấu hình (tính năng có từ phiên bản mới).
+
+### 5.4. Cách sử dụng Aider cơ bản
+
+```bash
+# 1. Chạy Aider trong thư mục dự án (phải có Git init)
+cd /path/to/your/project
+git init  # Nếu chưa có Git repo
+aider
+
+# 2. Chat với Aider (gõ yêu cầu trực tiếp)
+# Ví dụ: "Add error handling to the fetchData function in api.js"
+
+# 3. Chuyển sang chế độ Architect (lên kế hoạch trước, code sau)
+# /architect
+# Trong chế độ này, Aider sẽ phân tích thiết kế trước, sau đó mới viết code.
+# Phù hợp cho các task phức tạp cần lên architecture trước.
+
+# 4. Chuyển sang chế độ Code (chế độ mặc định - tập trung viết code)
+# /code
+
+# 5. Thêm file vào phiên làm việc
+# /add src/main.py
+# /add src/utils/helpers.py
+
+# 6. Thêm nhiều file cùng lúc
+# /add src/*.py src/utils/*.py
+
+# 7. Thêm toàn bộ thư mục
+# /add src/
+
+# 8. Xoá file khỏi context
+# /drop src/old-file.py
+
+# 9. Xoá toàn bộ file khỏi context (xóa sạch)
+# /clear
+
+# 10. Xem danh sách các file đang được quản lý
+# /files
+
+# 11. Xem repo map (sơ đồ cấu trúc dự án)
+# /map
+
+# 12. Xoá lịch sử chat
+# /history
+
+# 13. Xoá hoàn toàn (clear + reset toàn bộ session)
+# /reset
+
+# 14. Diff các thay đổi trước khi commit
+# /diff
+
+# 15. Commit thay đổi
+# /commit
+
+# 16. Yêu cầu Aider giải thích code
+# /explain src/main.py
+
+# 17. Chạy Aider với chế độ tự động commit (không cần hỏi)
+aider --auto-commits
+
+# 18. Chạy Aider ở chế độ "tự động" (không cần phê duyệt từng thay đổi)
+aider --yes
+```
+
+### 5.5. Các flags hữu ích khác
+
+```bash
+# Chỉ định kiến trúc model (quan trọng với Ollama)
+aider --model ollama_chat/qwen2.5-coder:14b --map-tokens 1024
+
+# Tăng số token cho context window (hữu ích với model 14B+)
+aider --max-chat-history-tokens 8192
+
+# Chỉ định thư mục làm việc
+aider --directory /path/to/project
+
+# Chạy ở chế độ quiet (ít log hơn)
+aider --no-pretty
+```
+
+### 5.6. Lưu ý khi dùng Aider với Local Model
+
+1. **Tốc độ inference:** Không nên dùng model nhỏ hơn 7B cho Aider vì chất lượng code sẽ không đủ tốt để chỉnh sửa đa file.
+2. **Git repository là bắt buộc:** Aider yêu cầu dự án phải được init Git để có thể theo dõi và hoàn tác thay đổi.
+3. **Context Window:** Model local thường có context window nhỏ hơn API đám mây (ví dụ 8K-32K tokens so với 128K+). Hãy giữ số lượng file trong phiên làm việc ở mức vừa phải (5-10 file).
+4. **Kiểm tra kết nối:** Nếu Aider không kết nối được với Ollama, hãy kiểm tra:
+   ```bash
+   # Kiểm tra Ollama đang chạy
+   curl http://localhost:11434/api/tags
+   
+   # Kiểm tra model đã được tải
+   ollama list
+   ```
+
+> **Mẹo nâng cao:** Kết hợp Aider với Cline/Roo Code: dùng Aider cho các tác vụ yêu cầu Git commit tự động và chỉnh sửa code chính xác, dùng Roo Code khi cần agent tự động chạy terminal và cài đặt dependencies.
+
+## 6. Hướng Dẫn Gỡ Cài Đặt (Uninstall)
 <details>
 <summary><b>Bấm để xem hướng dẫn dọn dẹp sạch sẽ hệ thống (khi cần)</b></summary>
 
@@ -197,13 +371,18 @@ Dừng service đang chạy ngầm và gỡ cài đặt qua Homebrew:
 brew services stop ollama
 brew uninstall ollama
 ```
+
+### Gỡ Aider (nếu đã cài)
+```bash
+pip uninstall aider-chat
+# Hoặc nếu cài qua Homebrew:
+brew uninstall aider
+```
 </details>
 
-## 6. Phụ Lục: Các kiến thức liên quan
+## 7. Phụ Lục: Các kiến thức liên quan
 <details>
 <summary><b>Bấm để xem thông tin phụ trợ</b></summary>
 
 - **Dự án Thunderbolt (từ Thunderbird/Mozilla):** Là một nền tảng mã nguồn mở độc lập đi theo triết lý "AI You Control". Nền tảng này hỗ trợ Model Context Protocol (MCP) và cho phép gắn API ngoại hoặc model local. Nếu bạn có định hướng tự code hẳn một IDE cho riêng mình bằng Electron/Tauri trong tương lai, kho lưu trữ Github của Thunderbolt là một nguồn tham khảo tuyệt vời về kiến trúc phần mềm.
 </details>
-
-
