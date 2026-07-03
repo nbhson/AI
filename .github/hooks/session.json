@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "hooks": {
+    "sessionStart": [
+      {
+        "id": "phase-1-understanding",
+        "enabled": true,
+        "hookFile": ".github/hooks/phase-1-understanding.hook.md",
+        "description": "Load workflow guidance, investigate context, and apply stack rules before planning."
+      }
+    ],
+    "sessionEnd": [
+      {
+        "id": "phase-4-validation-pr",
+        "enabled": true,
+        "hookFile": ".github/hooks/phase-4-validation-pr.hook.md",
+        "description": "Run build and tests, and prepare PR output."
+      },
+      {
+        "id": "phase-5-report-generation",
+        "enabled": true,
+        "hookFile": ".github/hooks/phase-5-report-generation.hook.md",
+        "description": "Generate final report and archive to .github/reports/."
+      }
+    ],
+    "userPromptSubmitted": [
+      {
+        "id": "phase-2-planning",
+        "enabled": true,
+        "hookFile": ".github/hooks/phase-2-planning.hook.md",
+        "description": "Create a draft plan and enforce approval gate for non-trivial requests."
+      }
+    ],
+    "preToolUse": [
+      {
+        "id": "phase-guard-apply-rules",
+        "enabled": true,
+        "hookFile": ".github/hooks/phase-1-understanding.hook.md",
+        "description": "Before code-edit tools, verify guidance loading and rule application are complete."
+      }
+    ],
+    "postToolUse": [
+      {
+        "id": "phase-3-execution-formatting",
+        "enabled": true,
+        "hookFile": ".github/hooks/phase-3-execution-formatting.hook.md",
+        "description": "After implementation steps, run lint/format checks."
+      }
+    ],
+    "errorOccurred": [
+      {
+        "id": "phase-recovery",
+        "enabled": true,
+        "hookFile": ".github/hooks/README.md",
+        "description": "On errors, return to phase index, re-align phase order, and resume from the failing phase."
+      }
+    ]
+  }
+}
