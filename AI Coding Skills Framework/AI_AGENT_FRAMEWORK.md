@@ -65,7 +65,7 @@ Bắt đầu từ **Phase 1** (Core Skills) và tiến dần đến **Phase 6** 
 
 ```
 AI/
-├── LEARNING_MEMORY_AND_CONTEXT.md          ← TRANG CHỦ
+├── AI_AGENT_FRAMEWORK.md                   ← TRANG CHỦ
 │
 │  ── CORE SKILLS (Kỹ Năng Cốt Lõi) ──
 ├── 01-retrieve-memory-knowledge/           ← ĐỌC
