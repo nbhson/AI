@@ -275,6 +275,61 @@ AI/
 
 ---
 
+## 🧠 Hiểu Framework Này
+
+> **Framework này là "bộ não orchestration" — còn AI model là "bộ não suy luận".**
+
+Framework dạy bạn **cách ghép các mảnh lại** — model chỉ là 1 mảnh trong puzzle. Bạn có thể dùng **Ollama chạy local miễn phí** hoặc **API trả phí** tùy budget.
+
+| Phần | Cần model? | Mô tả |
+|------|-----------|-------|
+| **Vector Search** (Module 01) | ✅ Cần **Embedding model** | Biến text thành vector để so sánh |
+| **BM25 Search** (Module 01) | ❌ Không cần | Thuần toán học, đếm từ khóa |
+| **Generate Answer** (Module 05) | ✅ Cần **LLM** | gemma3:12b, GPT-4o, Claude... |
+| **Prompt Building** (Module 05) | ❌ Không cần | Chỉ là sắp xếp text |
+| **Workflow** (Module 07) | ❌ Không cần | Chỉ là orchestration logic |
+| **CI/CD Automation** (Module 10) | ❌ Không cần | GitHub Actions, scripts |
+
+**2 loại model cần thiết:**
+1. **Embedding model** — Biến text thành vector (dùng cho search): `nomic-embed-text`, OpenAI text-embedding-3-small
+2. **LLM** — Tạo câu trả lời: `gemma3:12b`, `llama3`, GPT-4o, Claude
+
+---
+
+## 🚀 Sau Khi Học Xong — Dự Án Thực Tế
+
+Sau khi học xong **AI Coding Skills Framework**, bạn có thể xây dựng:
+
+| Dự án | Module áp dụng | Ứng dụng |
+|-------|---------------|----------|
+| **RAG System** | 01, 02, 03, 05 | Chatbot trả lời câu hỏi từ tài liệu riêng |
+| **AI Coding Agent** | 04, 06, 07, 09 | Tự động đọc code, phân task, viết code, review |
+| **CI/CD với AI** | 10, 11 | Auto-review code, generate test, deploy |
+| **Multi-Agent System** | 08, 09 | Planner → Coder → Reviewer → Tester → Deployer |
+| **Knowledge Base cá nhân** | 01, 03, 06 | Lưu trữ & truy xuất kiến thức từ nhiều nguồn |
+
+### Cơ hội nghề nghiệp
+
+| Vai trò | Kỹ năng áp dụng |
+|---------|-----------------|
+| **AI Engineer** | Thiết kế & triển khai AI Agent systems |
+| **Backend Developer** | Tích hợp LLM + RAG vào ứng dụng |
+| **DevOps/SRE** | AI-powered CI/CD & monitoring |
+| **Tech Lead** | Đánh giá & chọn kiến trúc AI phù hợp |
+| **Freelancer** | Build AI solutions cho khách hàng |
+
+### Lộ trình thực hành gợi ý
+
+```
+Phase 1-3 (Core):      Build 1 RAG chatbot đơn giản
+Phase 4-6 (Core):      Thêm planning & tool selection
+Phase 7-8 (Advanced):  Tổ chức thành workflow tự động
+Phase 9-10 (Advanced): Mở rộng thành multi-agent system
+Phase 11:              Đánh giá & tối ưu hóa hệ thống
+```
+
+---
+
 ## 💡 Ví Dụ Thực Tế
 
 ### Ví dụ 1: Xây dựng RAG Pipeline đơn giản
