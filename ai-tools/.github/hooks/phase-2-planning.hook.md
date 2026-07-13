@@ -10,7 +10,7 @@ Run this hook after Phase 1 has completed.
 
 ## Required Steps
 
-1. Produce a concise draft plan including:
+1. Produce a concise draft plan including (see ## Mandatory rules section):
    - intended goal and behavior changes
    - files/modules likely to be touched
    - validation approach (lint, tests, build, manual checks)

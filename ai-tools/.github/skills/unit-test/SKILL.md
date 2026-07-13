@@ -35,7 +35,7 @@ This document outlines the systematic flow for writing, updating, and executing 
      ```
 
 4. **Formatting & Quality**:
-   - Follow the [Post Code Change Skill](file:///d:/bitbucket/horizon2/horizon2-ui/ClientApp/.github/skills/post-code-change/SKILL.md) for canonical formatting, linting, and formatting checks.
+   - Follow the [Post Code Change Skill](../post-code-change/SKILL.md) for canonical formatting, linting, and formatting checks.
 
 5. **Validation**:
    - Run the relevant Jest suite and capture the result:
@@ -45,4 +45,4 @@ This document outlines the systematic flow for writing, updating, and executing 
    - Ensure the tests execute cleanly without memory leaks or uncaught async processes.
 
 6. **Report**:
-   - Generate and complete report artifacts using the [Report Generation Skill](file:///d:/bitbucket/horizon2/horizon2-ui/ClientApp/.github/skills/report-generation/SKILL.md) and finalize in Phase 4 (`.github/hooks/phase-4-validation-pr.hook.md`).
+   - Generate and complete report artifacts using the [Report Generation Skill](../report-generation/SKILL.md) and finalize in Phase 4 (`.github/hooks/phase-4-validation-pr.hook.md`).

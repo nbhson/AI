@@ -15,9 +15,9 @@ This document outlines the workflow for improving the structure, style, or perfo
 2. **Plan & Get Approval**: Detail the refactoring changes in `implementation_plan.md` using the Technical Design template (`.github/report-templates/technical-design.md`). Obtain explicit developer confirmation before executing code changes if the task is non-trivial.
 3. **Incremental Changes**: Make changes incrementally while preserving existing behavior. Keep refactoring sets focused, reuse shared assets, and strictly follow the project naming, module, and styling conventions.
 4. **Update Unit Tests**: Update corresponding unit tests in spec files (`*.spec.ts`) to match the refactored code and ensure proper mock configurations.
-5. **Formatting & Quality Checks**: Follow the [Post Code Change Skill](file:///d:/bitbucket/horizon2/horizon2-ui/ClientApp/.github/skills/post-code-change/SKILL.md) for canonical lint, format, and cleanup requirements.
+5. **Formatting & Quality Checks**: Follow the [Post Code Change Skill](../post-code-change/SKILL.md) for canonical lint, format, and cleanup requirements.
 6. **Validation & Report**:
    - Run unit tests to verify no regressions: `npm run test`.
    - Run production compilation check: `npm run build`.
    - Manually test and inspect the layouts on local dev: `npm run startdev`.
-   - Generate/finalize report artifacts through the [Report Generation Skill](file:///d:/bitbucket/horizon2/horizon2-ui/ClientApp/.github/skills/report-generation/SKILL.md) and Phase 4 (`.github/hooks/phase-4-validation-pr.hook.md`).
+   - Generate/finalize report artifacts through the [Report Generation Skill](../report-generation/SKILL.md) and Phase 4 (`.github/hooks/phase-4-validation-pr.hook.md`).

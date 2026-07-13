@@ -19,10 +19,10 @@ After making code changes, execute the following quality and verification steps:
 
 3. **Security Check**: Verify that no credentials, passwords, client secrets, API tokens, or sensitive values were introduced.
 
-4. **Alignment Verification**: Ensure all changes remain aligned with the [Core Engineering Guidelines](file:///d:/bitbucket/horizon2/horizon2-ui/ClientApp/.github/knowledge/core-engineering-guidelines.md).
+4. **Alignment Verification**: Ensure all changes remain aligned with the [Core Engineering Guidelines](../../knowledge/core-engineering-guidelines.md).
 
 5. **Generate Draft Report**: After all quality checks pass, generate a structured draft report based on your workflow type:
-   - Follow the [Report Generation Skill](file:///d:/bitbucket/horizon2/horizon2-ui/ClientApp/.github/skills/report-generation/SKILL.md).
+   - Follow the [Report Generation Skill](../report-generation/SKILL.md).
    - Use the appropriate template from `/.github/report-templates/`.
    - Save the report to `.github/reports/` with the naming convention: `[WORKFLOW-TYPE]-REPORT-[ID]-[DATE].md`.
 

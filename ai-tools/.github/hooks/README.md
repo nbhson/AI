@@ -47,6 +47,7 @@ Strict, step-by-step execution is the default behavior for all tasks:
 3. Do not skip planning/review gates or any step on those phase.
 4. Before implementation, print a checklist of hook steps to run.
 5. Before finishing, print a completion checklist mapped to each hook.
+6. If Phase 4 validation fails, loop back to Phase 3 to apply fixes, then re-run Phase 4.
 
 ## Strict Mode Completion Contract
 

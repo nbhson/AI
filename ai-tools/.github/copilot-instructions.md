@@ -8,6 +8,8 @@ When handling developer requests, Copilot must first read all files inside the `
 
 Copilot must load and apply that all of documents before implementing any code changes.
 
+DO NOT SKIP any of the following files in `.github/hooks/`:
+
 ---
 
 ## Developer Workflow Orchestration 
@@ -32,10 +34,12 @@ flowchart TD
 
     subgraph Phase1["Phase 1 - Understanding"]
         LoadKnowledge[Load Guidelines]
+        LoadReportContext[Load Relevant Report Context]
         Investigation[Investigation]
         ApplyRules[Apply Stack Rules]
 
-        LoadKnowledge --> Investigation
+        LoadKnowledge --> LoadReportContext
+        LoadReportContext --> Investigation
         Investigation --> ApplyRules
     end
 
@@ -74,12 +78,15 @@ flowchart TD
     subgraph Phase4["Phase 4 - Validation & PR"]
         CompileCheck[Run npm run build]
         TestCheck[Run npm run test]
+        ValidationGate{Validations Passed?}
         PRCreation[Create PR Branch & Description]
         Reviewer[Review Code Diffs]
 
         FormatCode --> CompileCheck
         CompileCheck --> TestCheck
-        TestCheck --> PRCreation
+        TestCheck --> ValidationGate
+        ValidationGate -->|No| TaskList
+        ValidationGate -->|Yes| PRCreation
         CodeReviewWF --> Reviewer
     end
 
@@ -108,9 +115,9 @@ flowchart TD
     5. `.github/hooks/phase-5-report-generation.hook.md`
 - **Hook Index**: See `.github/hooks/README.md` for mapping and execution guidance.
 
-- **After Code Modifications**: Remind the developer to check formatting, linting, and generate reports via [.github/skills/post-code-change/SKILL.md](file:///d:/bitbucket/horizon2/horizon2-ui/ClientApp/.github/skills/post-code-change/SKILL.md).
-- **Report Generation**: For all workflow types, follow [.github/skills/report-generation/SKILL.md](file:///d:/bitbucket/horizon2/horizon2-ui/ClientApp/.github/skills/report-generation/SKILL.md) to generate structured reports saved to `.github/reports/`.
-- **Before Committing & Pushing**: Remind the developer to execute compilation tests, run unit tests, finalize reports, and prepare branch info via [.github/skills/pre-pull-request/SKILL.md](file:///d:/bitbucket/horizon2/horizon2-ui/ClientApp/.github/skills/pre-pull-request/SKILL.md).
+- **After Code Modifications**: Remind the developer to check formatting, linting, and generate reports via [.github/skills/post-code-change/SKILL.md](./skills/post-code-change/SKILL.md).
+- **Report Generation**: For all workflow types, follow [.github/skills/report-generation/SKILL.md](./skills/report-generation/SKILL.md) to generate structured reports saved to `.github/reports/`.
+- **Before Committing & Pushing**: Remind the developer to execute compilation tests, run unit tests, finalize reports, and prepare branch info via [.github/skills/pre-pull-request/SKILL.md](./skills/pre-pull-request/SKILL.md).
 
 ---
 
@@ -120,6 +127,17 @@ For every developer task, Copilot must:
 
 1. Confirm strict mode is active.
 2. Execute all 5 phase hooks in order without skipping any gate.
-3. Provide a pre-implementation checklist mapped to each hook file.
-4. Provide a final completion checklist mapped to each hook file.
-5. Explicitly report planning gate outcome before implementation continues.
+3. Before planning, read the latest relevant report from `.github/reports/` (prefer matching ticket/component `*.ctx.md`) and carry forward open items/evidence.
+4. Provide a pre-implementation checklist mapped to each hook file.
+5. Provide a final completion checklist mapped to each hook file.
+6. Explicitly report planning gate outcome before implementation continues.
+7. If Phase 4 validation fails, return to Phase 3 for fixes, then re-run Phase 4 until all exit criteria pass.
+8. Complete Phase 5 by generating and saving a workflow-aligned report in `.github/reports/`; no task is considered complete without this artifact.
+
+## Context Optimization (Non-Strict Runs)
+
+When strict mode is not explicitly required, Copilot may reduce latency/token usage by loading report context selectively:
+
+1. For non-trivial or code-change tasks, load the latest relevant report summary from `.github/reports/` before planning.
+2. For trivial/no-code queries, report loading may be skipped.
+3. If uncertainty exists about scope or risk, fall back to strict behavior and load the full relevant report context.

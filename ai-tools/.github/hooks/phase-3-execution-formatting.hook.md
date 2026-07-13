@@ -12,6 +12,7 @@ Run this hook only after Phase 2 approval.
 
 1. Convert approved plan into a concrete task list.
 2. Implement code changes in focused increments.
+   1. Note: Your generated code will be reviewed by ChatGPT or Claude   
 3. Add or update unit tests where behavior is changed.
 4. Execute linting and formatting:
    - `npm run lint`

@@ -30,11 +30,11 @@ Run this hook after Phase 4 (Validation & PR Preparation) is complete.
 
 3. **Generate Report File**:
    - Save to `.github/reports/` directory
-   - Use naming convention: `[WORKFLOW-TYPE]-REPORT-[COMPONENT/TICKET]-[DATE]-[TIME].md`
+   - Use naming convention: `[WORKFLOW-TYPE]-REPORT-[COMPONENT/TICKET]-[DATE]-[TIME].ctx.md`
    - Examples:
-     - `REFACTOR-REPORT-ValidatorSupportUtil-20260701-1531.md`
-     - `BUG-REPORT-HZ2-1234-20260630-1430.md`
-     - `ENGINEERING-REPORT-CustomViewFiltering-20260630-1415.md`
+     - `REFACTOR-REPORT-ValidatorSupportUtil-20260701-1531.ctx.md`
+     - `BUG-REPORT-HZ2-1234-20260630-1430.ctx.md`
+     - `ENGINEERING-REPORT-CustomViewFiltering-20260630-1415.ctx.md`
 
 4. **Include Evidence**:
    - Build log excerpts with hash and duration

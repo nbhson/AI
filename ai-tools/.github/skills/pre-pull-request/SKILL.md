@@ -28,13 +28,13 @@ Before creating a commit, pushing code, or submitting a Pull Request, execute th
    - Verify that no unrelated or temporary code/logs are included.
 
 5. **Alignment Check**:
-   - Ensure the implementation follows repository guidance in [Core Engineering Guidelines](file:///d:/bitbucket/horizon2/horizon2-ui/ClientApp/.github/knowledge/core-engineering-guidelines.md).
+   - Ensure the implementation follows repository guidance in [Core Engineering Guidelines](../../knowledge/core-engineering-guidelines.md).
 
 6. **Finalize Report**:
    - Complete and review the generated report file in `.github/reports/`.
    - Update with final test results and build validation.
    - Add the PR link once created.
-   - Refer to the [Report Generation Skill](file:///d:/bitbucket/horizon2/horizon2-ui/ClientApp/.github/skills/report-generation/SKILL.md).
+   - Refer to the [Report Generation Skill](../report-generation/SKILL.md).
 
 7. **Submit PR**:
    - Push the branch to the remote git repository.

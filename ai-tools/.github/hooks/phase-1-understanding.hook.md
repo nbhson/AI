@@ -22,11 +22,16 @@ Run this hook immediately after receiving a developer request.
    - `.github/copilot-instructions.md`
    - `.github/knowledge/`
    - `.github/skills/` (as relevant)
-4. Investigate code context:
+   - `.github/report/` (as relevant)
+4. Load report context from `.github/reports/`:
+   - **Strict Mode**: Must read the latest workflow-relevant `*.ctx.md` (or latest report for the same ticket/component), then carry forward decisions, risks, unresolved items, and validation evidence.
+   - **Non-Strict Mode**: For non-trivial/code-change tasks, read the latest relevant report summary first; for trivial/no-code queries, report loading may be skipped.
+   - Use report context as planning input to avoid repeated analysis.
+5. Investigate code context:
    - Analyze target modules/files and dependencies.
    - Search for reusable constants, models, shared components, and services.
    - Avoid duplicate code.
-5. Apply stack rules:
+6. Apply stack rules:
    - Angular 15 module patterns
    - SCSS conventions
    - service import and coding style constraints
@@ -35,4 +40,6 @@ Run this hook immediately after receiving a developer request.
 
 - Workflow type is identified.
 - Relevant skills/knowledge are loaded.
+- Strict Mode: relevant report context from `.github/reports/` is loaded.
+- Non-Strict Mode: report context is loaded for non-trivial/code-change tasks.
 - Investigation findings are captured and ready for planning.

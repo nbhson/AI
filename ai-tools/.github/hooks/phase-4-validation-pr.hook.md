@@ -32,3 +32,7 @@ Run this hook after Phase 3 outputs are available.
 - PR branch and description are ready.
 - PR commit messages follow `SP0168-<ticket number>: <short summary>`.
 - All code diffs reviewed.
+
+## Failure Handling
+
+- If any Phase 4 validation step fails (build, test, or diff review), return to Phase 3 (Execution and Formatting) to apply fixes, then re-run Phase 4 until all exit criteria pass.

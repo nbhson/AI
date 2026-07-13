@@ -19,13 +19,13 @@ This document outlines the workflow for developing and delivering new features i
    - Use standard styles, variables, and common helper layouts.
 4. **Data Flows**: Integrate state logic using RxJS (observables, behavior subjects) and NgRx where application-wide state is needed.
 5. **Write Unit Tests**: Write or update unit tests inside the corresponding `*.spec.ts` files to test component renderings, data logic, and event flows.
-6. **Formatting & Quality Checks**: Follow the [Post Code Change Skill](file:///d:/bitbucket/horizon2/horizon2-ui/ClientApp/.github/skills/post-code-change/SKILL.md) for canonical formatting, lint/format, and cleanup steps.
+6. **Formatting & Quality Checks**: Follow the [Post Code Change Skill](../post-code-change/SKILL.md) for canonical formatting, lint/format, and cleanup steps.
 7. **Validation**:
    - Run unit tests to verify correctness (`npm run test`).
    - Run production compilation check (`npm run build`).
    - Verify layout and logs in the local browser (`npm run startdev`).
 8. **Report & Submit**:
-   - Create a draft report via the [Report Generation Skill](file:///d:/bitbucket/horizon2/horizon2-ui/ClientApp/.github/skills/report-generation/SKILL.md).
+   - Create a draft report via the [Report Generation Skill](../report-generation/SKILL.md).
    - Finalize validation and PR readiness via Phase 4 (`.github/hooks/phase-4-validation-pr.hook.md`).
 
 ---
