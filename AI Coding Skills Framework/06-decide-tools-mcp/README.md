@@ -2,15 +2,27 @@
 
 > **"AI Agent không giỏi vì biết nhiều – nó giỏi vì biết KHI NÀO dùng CÔNG CỤ NÀO"**
 
+### Câu Chuyện Mở Đầu
+
+Hãy tưởng tượng bạn bước vào một **workshop sửa xe** với hàng trăm dụng cụ: cờ lê, tua vít, máy khoan, máy hàn... Một người thợ giỏi biết chính xác dụng cụ nào cần cho mỗi việc. Nhưng một người mới? Anh ta sẽ **dùng máy khoan để tháo ốc vít** — hoặc worse, **dùng búa đập vào động cơ**.
+
+**Đó chính xác là vấn đề của AI Agent khi không có Tool Decision Intelligence.**
+
+LLM có thể "biết" gọi tool, nhưng khi có **50+ tools** trong arsenal, việc chọn sai tool hoặc truyền sai parameters sẽ dẫn đến: lãng phí token, kết quả sai, hoặc worse — **side effects không mong muốn** như xóa file quan trọng, gửi email sai nội dung, hoặc thực hiện hành động không thể đảo ngược.
+
+**Giải pháp**: Structured Tool Decision — một quy trình rõ ràng từ **phân tích ý định → chọn tool → validate parameters → thực hiện → kiểm tra kết quả**.
+
 ### Tại Sao Tool Decision Quan Trọng?
 
 > *"Một agent có 50 tools nhưng chọn sai tool = người thợ có 50 cái búa nhưng dùng búa đập kính."*
 
-#### Bằng chứng nghiên cứu:
+#### 3 Bằng Chứng Khoa Học
 
-1. **Anthropic MCP Research (2025)**: Agent sử dụng structured tool selection giảm **60% failed tool calls** so với unstructured approach.
-2. **LangChain Benchmark (2025)**: Tool selection accuracy tăng từ 65% lên 92% khi sử dụng intent classification trước tool routing.
-3. **Princeton SWE-agent (2024)**: Giới hạn 50 search results + tool validation tăng **64% success rate**.
+| # | Nghiên Cứu | Phát Hiện Quan Trọng |
+|---|-----------|----------------------|
+| 1 | **Anthropic MCP Research (2025)** | Agent sử dụng structured tool selection giảm **60% failed tool calls** so với unstructured approach |
+| 2 | **LangChain Benchmark (2025)** | Tool selection accuracy tăng từ **65% lên 92%** khi sử dụng intent classification trước tool routing |
+| 3 | **Princeton SWE-agent (2024)** | Giới hạn 50 search results + tool validation tăng **64% success rate** |
 
 #### Triết lý cốt lõi:
 

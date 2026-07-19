@@ -1,14 +1,26 @@
 # ⚙️ X. Automation
 
+### Câu Chuyện Mở Đầu
+
+Bạn có bao giờ **lặp lại cùng 1 thao tác** trên 10 lần trong ngày? Gõ `git pull`, chạy test, build, deploy, rồi kiểm tra log? Lần đầu bạn làm cẩn thận. Lần thứ 10 bạn bắt đầu skip bước. Đến lần thứ 50, bạn **quên mất bước quan trọng** — và production bị crash.
+
+**Đây chính xác là vấn đề mà Automation giải quyết.**
+
+Trong AI coding, automation không chỉ là CI/CD pipeline — nó bao gồm **mọi thứ lặp lại**: viết boilerplate, chạy tests, review code, deploy, monitor, và thậm chí **tự repair khi có lỗi**. Khi bạn automate đúng, team ngừng làm việc tay chân và bắt đầu **thinking work**.
+
+**Giải pháp**: Automation Pipeline — từ manual → scripted → triggered → self-healing → predictive, giúp team **deploy hàng trăm lần/ngày** thay vì hàng tuần.
+
 ### Tại Sao Automation Quan Trọng?
 
 > *"Automation không thay thế con người — nó thay thế những việc con người KHÔNG PHẢI làm."*
 
-#### Bằng chứng nghiên cứu:
+#### 3 Bằng Chứng Khoa Học
 
-1. **GitHub (2025)**: Repositories với CI/CD automation giảm **60% deployment failures** và **44% time-to-merge**.
-2. **DORA Report (2025)**: Top-performing teams automate **95%+ deployments** — họ deploy hàng trăm lần/ngày thay vì hàng tuần.
-3. **Stripe Engineering (2024)**: Automated code review pipelines phát hiện **38% more bugs** trước khi reaches human reviewers.
+| # | Nghiên Cứu | Phát Hiện Quan Trọng |
+|---|-----------|----------------------|
+| 1 | **GitHub (2025)** | Repositories với CI/CD automation giảm **60% deployment failures** và **44% time-to-merge** |
+| 2 | **DORA Report (2025)** | Top-performing teams automate **95%+ deployments** — deploy hàng trăm lần/ngày thay vì hàng tuần |
+| 3 | **Stripe Engineering (2024)** | Automated code review pipelines phát hiện **38% more bugs** trước khi reaches human reviewers |
 
 #### Triết lý cốt lõi:
 

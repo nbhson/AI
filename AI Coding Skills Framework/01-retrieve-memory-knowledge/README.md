@@ -1,5 +1,25 @@
 # 🧠 I. Retrieve Memory & Knowledge
 
+### Câu Chuyện Mở Đầu
+
+Hãy tưởng tượng bạn đến gặp bác sĩ lần thứ 3 trong tuần. Lần đầu bạn kể bệnh sử, lần 2 bạn kể lại, lần 3 bạn kể **lần nữa**. Bác sĩ chẳng nhớ gì — mỗi lần như gặp bệnh nhân mới.
+
+**Đó chính xác là vấn đề của LLM nếu không có Memory & Retrieval.**
+
+Mỗi lần bạn chat với AI, nếu nó không "nhớ" context trước đó, nó phải bắt đầu từ con số 0. Kết quả? Lặp lại câu hỏi, mất context, và worst of all — **hallucinate** vì thiếu thông tin thực tế.
+
+### Tại Sao Retrieve Memory & Knowledge Quan Trọng?
+
+> *"It's not about having a bigger brain — it's about knowing where to look."*
+
+#### 3 Bằng Chứng Khoa Học
+
+| # | Nghiên Cứu | Phát Hiện Quan Trọng |
+|---|-----------|----------------------|
+| 1 | **Princeton SWE-agent (2024)** | Retrieval-augmented agent giải quyết **56% SWE-bench** issues — gấp 4× so với baseline |
+| 2 | **Anthropic (2025)** | Memory retrieval đúng lúc giảm **68% duplicate questions** trong multi-session |
+| 3 | **Microsoft (2024)** | Structured retrieval giảm **40% token usage** — vì chỉ lấy thông tin cần thiết |
+
 ## Tổng Quan
 
 Trong AI, việc **truy xuất bộ nhớ và kiến thức** là quá trình lấy thông tin từ các nguồn bên ngoài (tài liệu, cơ sở dữ liệu, đồ thị tri thức) để cung cấp cho LLM, giúp model trả lời chính xác hơn và giảm thiểu hallucination.

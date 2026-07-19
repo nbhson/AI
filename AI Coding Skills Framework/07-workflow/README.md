@@ -2,15 +2,27 @@
 
 > **"Workflow tốt không phải là workflow phức tạp — mà là workflow mỗi bước đều rõ ràng, có thể test, và recover được"**
 
+### Câu Chuyện Mở Đầu
+
+Hãy tưởng tượng một **nhà máy ô tô**. Mỗi chiếc xe đi qua hàng trăm trạm: lắp khung → gắn động cơ → sơn → kiểm tra chất lượng → đóng gói. Nếu không có **quy trình chuẩn** — mỗi công nhân làm theo ý mình — kết quả sẽ là thảm họa: ốc vít rơi thiếu, sơn loang, kiểm tra bỏ sót.
+
+**AI Agent cũng y hệt vậy khi thiếu Workflow.**
+
+Nhiều developer viết agent nhưng chỉ là **một chuỗi function calls liền nhau** — không có state management, không có error recovery, không có checkpoint. Khi task đơn giản, nó chạy được. Nhưng khi task phức tạp — **mỗi lần lỗi là phải chạy lại từ đầu**.
+
+**Giải pháp**: Structured Workflow — một hệ thống quản lý **toàn bộ lifecycle** của task, từ trigger đến feedback, với khả năng **recover, checkpoint, và observability** tại mọi bước.
+
 ### Tại Sao Workflow Quan Trọng?
 
 > *"Agent không có workflow giống như đầu bếp không có thực đơn — có nguyên liệu, có dụng cụ, nhưng món ra tùy hứng."*
 
-#### Bằng chứng nghiên cứu:
+#### 3 Bằng Chứng Khoa Học
 
-1. **Google DeepMind (2025)**: Structured workflows giảm **45% task failure rate** trong multi-step coding agents.
-2. **Anthropic (2025)**: Workflow engine với retry + checkpoint giảm **70% data loss** khi agent gặp lỗi.
-3. **LangGraph Benchmark (2025)**: State machine workflows xử lý **3x complex tasks** tốt hơn simple sequential chains.
+| # | Nghiên Cứu | Phát Hiện Quan Trọng |
+|---|-----------|----------------------|
+| 1 | **Google DeepMind (2025)** | Structured workflows giảm **45% task failure rate** trong multi-step coding agents |
+| 2 | **Anthropic (2025)** | Workflow engine với retry + checkpoint giảm **70% data loss** khi agent gặp lỗi |
+| 3 | **LangGraph Benchmark (2025)** | State machine workflows xử lý **3× complex tasks** tốt hơn simple sequential chains |
 
 #### Triết lý cốt lõi:
 

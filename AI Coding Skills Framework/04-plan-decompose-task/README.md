@@ -3,11 +3,27 @@
 > **"Mỗi khi agent mắc lỗi phân task, bạn không sửa prompt – bạn xây dựng hệ thống planning ngăn chặn lỗi đó tái diễn"**
 > — Mitchell Hashimoto (Applied to Task Planning)
 
+### Câu Chuyện Mở Đầu
+
+Hãy tưởng tượng bạn nhờ một người thợ xây dựng **căn nhà 3 tầng**. Anh ta chẳng vẽ bản vẽ, chẳng chia giai đoạn, cứ thế bắt tay vào — đập nền, xây tường, lắp cửa... cùng lúc. Kết quả? Tường lệch, cửa hỏng, phải đập bỏ làm lại.
+
+**Đó chính xác là vấn đề của AI Agent khi không có Planning & Decomposition.**
+
+LLM rất giỏi "nói" — nhưng khi đối mặt task phức tạp như *"triển khai hệ thống BHYT cho công ty 100 người"*, chúng thường mắc **lỗi Oversimplification** (nhảy thẳng vào code mà không plan) hoặc **Analysis Paralysis** (phân tích quá nhiều mà không bao giờ bắt tay). Cả hai đều dẫn đến kết quả tồi.
+
+**Giải pháp**: Structured Planning — cho agent **nghĩ trước khi làm**, nhưng vẫn **bắt tay vào làm trong thời gian hợp lý**.
+
 ### Tại Sao Plan & Decompose Task Quan Trọng?
 
 > *"A goal without a plan is just a wish. And an AI without decomposition is just a chatbot."*
 
-#### Bằng chứng nghiên cứu:
+#### 3 Bằng Chứng Khoa Học
+
+| # | Nghiên Cứu | Phát Hiện Quan Trọng |
+|---|-----------|----------------------|
+| 1 | **Microsoft Research (2025)** | Agent **without planning** chỉ đạt **32% success rate**, có **structured decomposition** đạt **78%** — improvement 2.4× |
+| 2 | **Stanford HAI (2024)** | Task decomposition giảm **60% token usage** cho complex tasks — agent không "lạc đề" giữa subtask |
+| 3 | **Anthropic (2025)** | Claude Code với task planning resolve **44% more SWE-bench issues** — planning là difference giữa "agent" và "chatbot" |
 
 1. **Microsoft Research (2025)**: AI agents thực hiện complex tasks **without planning** chỉ đạt **32% success rate**, trong khi agents có **structured decomposition** đạt **78%** — improvement 2.4×.
 2. **Stanford HAI (2024)**: Task decomposition giảm **60% token usage** cho complex tasks vì agent không "lạc đề" giữa các subtask.

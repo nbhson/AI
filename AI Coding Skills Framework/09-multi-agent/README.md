@@ -1,14 +1,26 @@
 # 🤖 IX. Multi-Agent
 
+### Câu Chuyện Mở Đầu
+
+Bạn từng xem một bộ phim **heist** (cướp ngân hàng) như *Ocean's Eleven*? Đội gồm 11 người, mỗi người một chuyên môn: một người lên kế hoạch (Danny Ocean), một người phá khóa (Basher), một người giả dạng (Saul), một người lái xe (Terry). Không ai trong số họ có thể **làm một mình** — nhưng cùng nhau, họ thực hiện vụ cướp hoàn hảo.
+
+**AI Multi-Agent hoạt động y hệt vậy.**
+
+Một AI agent đơn lẻ có thể giỏi ở nhiều thứ, nhưng khi task đủ phức tạp — như *"Implement payment system với test, docs, và security review"* — một agent sẽ **overload**. Context window bị lãng phí vì phải chứa knowledge cho mọi lĩnh vực, không có peer review để phát hiện sai sót, và worst case: **agent tự confirm sai lầm của mình**.
+
+**Giải pháp**: Multi-Agent Architecture — mỗi agent là **chuyên gia 1 lĩnh vực**, phối hợp qua communication protocol, có checks & balances để đảm bảo chất lượng.
+
 ### Tại Sao Multi-Agent Quan Trọng?
 
 > *"Một agent đơn lẻ như một người làm mọi việc — giỏi nhưng chậm, dễ overload, và không có checks & balances."*
 
-#### Bằng chứng nghiên cứu:
+#### 3 Bằng Chứng Khoa Học
 
-1. **AutoGen (Microsoft, 2025)**: Multi-agent architecture giải quyết **68% complex coding tasks** thành công, so với 41% của single-agent.
-2. **CrewAI Research (2025)**: Agent teams với role specialization tăng **52% code quality** (measured by review scores).
-3. **Google DeepMind (2025)**: Multi-agent debate pattern giảm **35% hallucination rate** trong code generation.
+| # | Nghiên Cứu | Phát Hiện Quan Trọng |
+|---|-----------|----------------------|
+| 1 | **AutoGen (Microsoft, 2025)** | Multi-agent architecture giải quyết **68% complex coding tasks** thành công, so với **41%** của single-agent |
+| 2 | **CrewAI Research (2025)** | Agent teams với role specialization tăng **52% code quality** (measured by review scores) |
+| 3 | **Google DeepMind (2025)** | Multi-agent debate pattern giảm **35% hallucination rate** trong code generation |
 
 #### Triết lý cốt lõi:
 

@@ -2,15 +2,29 @@
 
 > **"Prompt không phải là string – nó là hệ thống engineering với versioning, testing, và lifecycle management"**
 
+### Câu Chuyện Mở Đầu
+
+Hãy tưởng tượng bạn đang đặt hàng tại nhà hàng. Bạn nói: **"Cho tôi món gì cũng được"** — đầu bếp bối rối, món ra ngẫu nhiên. Nhưng nếu bạn nói: **"Cho tôi món cá hồi nướng, không cay, thêm rau salad, nước sốt riêng"** — món ra đúng ý.
+
+**Prompt cho LLM cũng y hệt vậy.**
+
+Một prompt tồi — mơ hồ, thiếu cấu trúc, không có output format — sẽ khiến LLM "đoán" những gì bạn muốn. Kết quả? Hallucination, sai format, lãng phí token, và bạn phải prompt lại 3-4 lần mới được ý muốn.
+
+Nhưng một prompt được **engineering đúng cách** — với context phong phú, instructions rõ ràng, constraints hợp lý, và output format cụ thể — sẽ biến LLM từ "thuật toán ngẫu nhiên" thành **công cụ chính xác**.
+
 ### Tại Sao Prompt Builder Quan Trọng?
 
 Prompt Engineering đã tiến hóa thành **Prompt Engineering as System Design**. Trong Harness Engineering, prompt không chỉ là "câu hỏi đẹp" — nó là **đầu vào quyết định 80% chất lượng output**.
 
-#### Bằng chứng nghiên cứu:
+> *"A well-structured prompt is worth a thousand training examples."*
 
-1. **Anthropic (2024)**: Prompt format chỉ thay đổi có thể tăng accuracy **từ 60% lên 95%** trên cùng một task.
-2. **OpenAI (2024)**: Structured prompts với output format giảm **70% hallucination** so với free-form prompts.
-3. **Microsoft (2025)**: Prompt engineering systematic (với testing, versioning) giảm **40% production incidents**.
+#### 3 Bằng Chứng Khoa Học
+
+| # | Nghiên Cứu | Phát Hiện Quan Trọng |
+|---|-----------|----------------------|
+| 1 | **Anthropic (2024)** | Prompt format chỉ thay đổi có thể tăng accuracy **từ 60% lên 95%** trên cùng một task |
+| 2 | **OpenAI (2024)** | Structured prompts với output format giảm **70% hallucination** so với free-form prompts |
+| 3 | **Microsoft (2025)** | Prompt engineering systematic (với testing, versioning) giảm **40% production incidents** |
 
 #### Triết lý cốt lõi:
 

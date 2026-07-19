@@ -1,14 +1,26 @@
 # 💾 III. Update Memory & Knowledge Store
 
-### Tại Sao Update Memory Quan Trọng?
-
 > *"Memory without update is like a library without new books — eventually irrelevant."*
 
-#### Bằng chứng nghiên cứu:
+### Câu Chuyện Mở Đầu
 
-1. **Cognitive Science (Ebbinghaus Forgetting Curve)**: Without active reinforcement và consolidation, **70% thông tin bị quên trong 24h**. Memory write-back systems giúp AI agent giữ knowledge fresh.
-2. **Google Research (2024)**: Knowledge bases được cập nhật thường xuyên reduce **45% hallucination rate** trong AI responses — vì agent có factual grounding thay vì relying on training data cũ.
-3. **Anthropic (2025)**: Effective memory consolidation trong AI agents giúp **3× fewer repeated mistakes** — agent remember what worked và what didn't từ previous sessions.
+Hãy tưởng tượng bạn là thủ thư. Mỗi ngày có người đến mượn sách mới, trả sách cũ. Nếu bạn **chỉ nhận sách mới** mà không bao giờ sắp xếp lại kệ, không bao giờ bỏ sách hỏng, không bao giờ cập nhật catalog — thì sau 1 năm, thư viện sẽ trở thành **kho chứa đồ lộn xộn**, chẳng ai tìm được gì.
+
+**Đó chính xác là vấn đề của AI Memory nếu chỉ "ghi" mà không "cập nhật".**
+
+LLM có thể ghi nhớ thông tin mới, nhưng nếu không **consolidate** (gộp), **prune** (loại bỏ cái cũ), và **index** (tổ chức lại) — knowledge base sẽ ngày càng chậm, nhiễu, và không chính xác. Kết quả? Agent lặp lại cùng một lỗi, đưa ra thông tin cũ, và hallucinate vì thiếu factual grounding.
+
+### Tại Sao Update Memory Quan Trọng?
+
+> *"It's not about having a bigger brain — it's about keeping it clean and current."*
+
+#### 3 Bằng Chứng Khoa Học
+
+| # | Nghiên Cứu | Phát Hiện Quan Trọng |
+|---|-----------|----------------------|
+| 1 | **Ebbinghaus Forgetting Curve** | Without active reinforcement, **70% thông tin bị quên trong 24h**. Memory write-back giúp AI giữ knowledge fresh |
+| 2 | **Google Research (2024)** | Knowledge bases được cập nhật thường xuyên giảm **45% hallucination rate** — factual grounding thay vì training data cũ |
+| 3 | **Anthropic (2025)** | Effective memory consolidation giúp **3× fewer repeated mistakes** — agent remember what worked và what didn't |
 
 #### Triết lý cốt lõi:
 

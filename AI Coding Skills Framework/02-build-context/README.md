@@ -1,5 +1,27 @@
 # 🔨 II. Build Context
 
+### Câu Chuyện Mở Đầu
+
+Hãy tưởng tượng bạn là diễn giả trước 200 người. Trên bàn có 200 slide. Nếu bạn chiếu hết 200 slide cùng lúc — khán giả choáng ngợp, chẳng ai hiểu gì. Nếu bạn chỉ chiếu 3 slide trống — khán giả cũng chẳng hiểu gì.
+
+**Đó chính xác là vấn đề của Build Context.**
+
+Bạn đã retrieve được thông tin tuyệt vời từ bước 01. Nhưng nếu bạn **đưa hết tất cả vào prompt** — model bị overload, mất focus, và trả lời kém đi. Nếu bạn **đưa quá ít** — model thiếu thông tin và hallucinate.
+
+Build Context là nghệ thuật **tổ chức thông tin đúng cách, đúng lúc, đúng lượng** — giống như một diễn giả giỏi biết cách chọn lọc thông tin trước khi phát biểu.
+
+### Tại Sao Build Context Quan Trọng?
+
+> *"Context is the new prompt — trong modern AI engineering, context thay thế prompt engineering truyền thống."*
+
+#### 3 Bằng Chứng Khoa Học
+
+| # | Nghiên Cứu | Phát Hiện Quan Trọng |
+|---|-----------|----------------------|
+| 1 | **Google (2024) — "Lost in the Middle"** | Accuracy giảm **từ 76% xuống còn 20%** khi info quan trọng nằm giữa context. Đặt đầu/cuối → accuracy 80%+ |
+| 2 | **Anthropic (2025) — Context Window Research** | Context window 200K KHÔNG có nghĩa dùng hết. Optimal ở **40-60% utilization** |
+| 3 | **Princeton SWE-agent (2024)** | Structured context tăng task completion **từ 14% lên 34%** trên SWE-bench |
+
 ## Tổng Quan
 
 **Build Context** là quá trình **tổ chức và quản lý thông tin** để đưa vào prompt của LLM. Context tốt giúp model hiểu rõ hơn, trả lời chính xác hơn, và tránh hallucination.

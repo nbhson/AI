@@ -1,14 +1,26 @@
 # 📊 XI. Evaluation
 
+### Câu Chuyện Mở Đầu
+
+Bạn xây một chiếc cầu mới. Bạn có thể nói *"Trông nó ổn"*, nhưng nếu không **đo tải trọng, kiểm tra chất liệu, stress-test với xe tải nặng** — bạn sẽ không biết cây cầu có chịu được 10 năm sử dụng hay sẽ sập sau 1 tháng.
+
+**AI code cũng vậy.** Viết code xong mà không evaluate = **ship cầu mà không kiểm tra**.
+
+Khi bạn sử dụng AI để generate code, câu hỏi quan trọng nhất không phải *"Code chạy được không?"* mà là: *"Code có đúng không? Có an toàn không? Có maintain được không? Có tốt hơn cách viết tay không?"* — và bạn cần **hệ thống evaluation bài bản** để trả lời.
+
+**Giải pháp**: Multi-level Evaluation Framework — từ functional correctness đến business value, đảm bảo mỗi dòng code AI-generated đều **đạt chuẩn trước khi đến tay người dùng**.
+
 ### Tại Sao Evaluation Quan Trọng?
 
 > *"Nếu bạn không đo lường được, bạn không thể cải thiện được. Và nếu bạn không cải thiện được, bạn đang tụt hậu."*
 
-#### Bằng chứng nghiên cứu:
+#### 3 Bằng Chứng Khoa Học
 
-1. **SWE-bench (Princeton, 2025)**: Benchmark standardized cho AI coding — top models resolve **44% real GitHub issues**, nhưng **chỉ khi được evaluate đúng cách** mới biết model nào thực sự tốt cho use case cụ thể.
-2. **Google Research (2024)**: Teams với systematic evaluation pipelines phát hiện **3× more regressions** trước khi reaching production.
-3. **Microsoft (2025)**: AI code generation without evaluation tăng **28% technical debt** trong 6 tháng.
+| # | Nghiên Cứu | Phát Hiện Quan Trọng |
+|---|-----------|----------------------|
+| 1 | **SWE-bench (Princeton, 2025)** | Top models resolve **44% real GitHub issues** — nhưng **chỉ khi được evaluate đúng cách** mới biết model nào thực sự tốt cho use case cụ thể |
+| 2 | **Google Research (2024)** | Teams với systematic evaluation pipelines phát hiện **3× more regressions** trước khi reaching production |
+| 3 | **Microsoft (2025)** | AI code generation without evaluation tăng **28% technical debt** trong 6 tháng |
 
 #### Triết lý cốt lõi:
 

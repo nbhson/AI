@@ -1,14 +1,26 @@
 # 📋 VIII. Task
 
+### Câu Chuyện Mở Đầu
+
+Hãy tưởng tượng bạn là **quản lý một bệnh viện đa khoa**. Mỗi ngày, hàng trăm bệnh nhân đến: người đau bụng cấp tính, người cần khám định kỳ, người muốn tiêm vaccine. Nếu bạn **không phân loại** — bệnh nhân cấp cứu phải xếp sau người khám thường — hậu quả sẽ là **thảm họa**.
+
+**AI Agent cũng gặp vấn đề tương tự khi không có Task Management.**
+
+Khi user gửi một yêu cầu phức tạp như *"Refactor module auth, thêm test, update docs, rồi deploy"* — agent nhận **tất cả cùng lúc** nhưng không biết bắt đầu từ đâu, cái nào ưu tiên, cái nào có thể song song. Kết quả: làm lộn xộn, bỏ sót bước, hoặc worse — **deploy code chưa test**.
+
+**Giải pháp**: Structured Task Management — một hệ thống phân loại, ưu tiên, phân nhỏ, và theo dõi tasks để agent **làm đúng việc, đúng lúc, đúng thứ tự**.
+
 ### Tại Sao Task Management Quan Trọng?
 
-> *"Agent không quản lý task giống như đầu bếp_ORDER_100 món cùng lúc — nhận hết nhưng nấu không kịp, món nào cũng dở."*
+> *"Agent không quản lý task giống như đầu bếp nhận 100 món cùng lúc — nhận hết nhưng nấu không kịp, món nào cũng dở."*
 
-#### Bằng chứng nghiên cứu:
+#### 3 Bằng Chứng Khoa Học
 
-1. **Anthropic (2025)**: Task decomposition giảm **40% completion time** và **55% error rate** trong complex coding tasks.
-2. **OpenAI (2025)**: Structured task tracking tăng **35% accuracy** trong multi-step reasoning compared to unstructured approaches.
-3. **Microsoft Research (2024)**: Task prioritization framework giảm **30% resource waste** trong AI-assisted development workflows.
+| # | Nghiên Cứu | Phát Hiện Quan Trọng |
+|---|-----------|----------------------|
+| 1 | **Anthropic (2025)** | Task decomposition giảm **40% completion time** và **55% error rate** trong complex coding tasks |
+| 2 | **OpenAI (2025)** | Structured task tracking tăng **35% accuracy** trong multi-step reasoning compared to unstructured approaches |
+| 3 | **Microsoft Research (2024)** | Task prioritization framework giảm **30% resource waste** trong AI-assisted development workflows |
 
 #### Triết lý cốt lõi:
 
