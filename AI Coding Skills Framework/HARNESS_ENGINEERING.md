@@ -1037,6 +1037,71 @@ const harness = new AIHarness({
 
 ---
 
+### Tích Hợp Component Với Modules Trong Repo
+
+Mỗi thành phần của Harness tương ứng trực tiếp với các modules trong **AI Coding Skills Framework**. Đây là cách các components "gắn liền" với thực tiễn:
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                    HARNESS → MODULE MAPPING                         │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  ┌─────────────┐      ┌─────────────────────────────────────┐     │
+│  │   TOOLS     │ ───► │ 06-decide-tools-mcp                 │     │
+│  │  (Tay chân) │      │ Tool selection & MCP integration     │     │
+│  └─────────────┘      └─────────────────────────────────────┘     │
+│                                                                     │
+│  ┌─────────────┐      ┌─────────────────────────────────────┐     │
+│  │   MEMORY    │ ───► │ 01-retrieve-memory-knowledge        │     │
+│  │  (Bộ não)   │      │ 03-update-memory-store               │     │
+│  └─────────────┘      └─────────────────────────────────────┘     │
+│                                                                     │
+│  ┌─────────────┐      ┌─────────────────────────────────────┐     │
+│  │   CONTEXT   │ ───► │ 02-build-context                    │     │
+│  │ (Tuần hoàn) │      │ Context building & management       │     │
+│  └─────────────┘      └─────────────────────────────────────┘     │
+│                                                                     │
+│  ┌─────────────┐      ┌─────────────────────────────────────┐     │
+│  │ GUARDRAILS  │ ───► │ 05-prompt-builder (Guardrails)      │     │
+│  │(Miễn dịch) │      │ 11-evaluation (validation)           │     │
+│  └─────────────┘      └─────────────────────────────────────┘     │
+│                                                                     │
+│  ┌─────────────┐      ┌─────────────────────────────────────┐     │
+│  │  FEEDBACK   │ ───► │ 07-workflow (retry, loop patterns)  │     │
+│  │ (Cảm giác)  │      │ 11-evaluation (metrics & feedback)  │     │
+│  └─────────────┘      └─────────────────────────────────────┘     │
+│                                                                     │
+│  ┌─────────────┐      ┌─────────────────────────────────────┐     │
+│  │ PERMISSIONS │ ───► │ 06-decide-tools-mcp (tool perms)    │     │
+│  │   (Xương)   │      │ 10-automation (access control)       │     │
+│  └─────────────┘      └─────────────────────────────────────┘     │
+│                                                                     │
+│  ┌─────────────┐      ┌─────────────────────────────────────┐     │
+│  │ ORCHESTRATION│───►│ 07-workflow (workflow engine)         │     │
+│  │(Thần kinh)  │      │ 09-multi-agent (agent coordination)  │     │
+│  └─────────────┘      │ 04-plan-decompose-task (planning)    │     │
+│                        │ 08-task (task management)             │     │
+│                        └─────────────────────────────────────┘     │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+#### Bảng Mapping Chi Tiết
+
+| Component | Analogies | Modules trong Repo | Mô tả |
+|-----------|-----------|-------------------|-------|
+| **Tools** | "Tay chân" | `06-decide-tools-mcp` | Định nghĩa AI có thể dùng công cụ gì, tích hợp MCP |
+| **Memory** | "Bộ não" | `01-retrieve-memory-knowledge`, `03-update-memory-store` | Nhớ & truy xuất kiến thức, cập nhật bộ nhớ |
+| **Context Management** | "Hệ tuần hoàn" | `02-build-context` | Xây dựng ngữ cảnh phù hợp cho từng task |
+| **Guardrails** | "Hệ miễn dịch" | `05-prompt-builder`, `11-evaluation` | Rào cản bảo vệ, kiểm tra đầu vào/đầu ra |
+| **Feedback Loops** | "Cảm giác" | `07-workflow`, `11-evaluation` | Vòng lặp phản hồi, retry, đánh giá chất lượng |
+| **Permissions** | "Xương" | `06-decide-tools-mcp`, `10-automation` | Phân quyền truy cập tài nguyên |
+| **Orchestration** | "Hệ thần kinh" | `07-workflow`, `09-multi-agent`, `04-plan-decompose-task`, `08-task` | Điều phối tất cả thành phần hoạt động hài hòa |
+
+> **Insight**: Prompt Engineering (`05-prompt-builder`) không phải là một component riêng biệt của Harness — nó là **kỹ thuật nền tảng** được tích hợp xuyên suốt nhiều components: System Prompt trong Orchestration, Few-shot trong Context Management, Structured Output trong Guardrails.
+
+---
+
 ## 6. Case Studies Thực Tế
 
 Các case studies sau đây cho thấy cách các tổ chức hàng đầu áp dụng Harness Engineering để đạt được kết quả vượt trội.
